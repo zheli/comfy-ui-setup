@@ -1,0 +1,9 @@
+[env]
+_.python.venv = {path = ".venv", create = true, python = "3.13.1"}
+
+[tools]
+python = "3.13.1"
+
+[tasks.install-dep]
+description = "Install dependencies"
+run = ["pip install -U pip", "pip install -r requirements.txt"]
