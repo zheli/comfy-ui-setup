@@ -1,2 +1,3 @@
 torch
 torchvision
+huggingface_hub[cli]

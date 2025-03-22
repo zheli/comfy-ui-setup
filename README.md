@@ -10,6 +10,7 @@ curl -sSL https://raw.githubusercontent.com/mise-app/mise/main/install.sh | sh
 2. Create a virtual environment using mise
 ```
 mise install
+source .venv/bin/activate
 mise run install-dep
 ```
 
