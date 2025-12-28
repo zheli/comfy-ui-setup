@@ -24,10 +24,10 @@ pipx install comfy-cli
 cd path/to/ai-video-work
 
 # install ComfyUI into a repo-local workspace managed by comfy-cli
-comfy install --workspace "$(pwd)/comfy-managed"
+comfy --workspace "$(pwd)/comfy-managed" install 
 
-# optional: make that workspace the default target for future comfy commands
-comfy set-default --workspace "$(pwd)/comfy-managed"
+# optional: set that workspace as the default target for future comfy commands
+comfy set-default "$(pwd)/comfy-managed"
 
 # launch the comfy-ui instance (adds --background to detach)
 comfy launch
