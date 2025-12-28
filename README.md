@@ -51,3 +51,11 @@ comfy model download \
   --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan2.2_vae.safetensors \
   --relative-path models/vae
 ```
+
+### Network Access (LAN / Tailscale)
+To access ComfyUI from other devices on your local network (e.g. `192.168.1.x`) or via VPNs like Tailscale (e.g. `100.x.y.z`), pass the `--listen` argument to the underlying ComfyUI process.
+
+```bash
+# Listen on all network interfaces (accessible from LAN and Tailscale IPs)
+comfy launch -- --listen 0.0.0.0
+```
