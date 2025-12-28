@@ -1,10 +1,5 @@
 # ai-video-work
-Local playground for ComfyUI and related AI video experiments.
-
-## Manjaro quick start
-- Install `mise` tooling (optional but recommended for this repo).
-- Install `pipx` and `comfy-cli` so ComfyUI is managed in an isolated environment.
-- Set up the project Python venv with `mise` for scripts that live in this repository.
+My local setup for ComfyUI and related AI video experiments.
 
 ## Install pipx and comfy-cli (Manjaro)
 ```bash
@@ -37,27 +32,22 @@ comfy update
 ```
 `comfy-cli` creates and maintains a dedicated virtualenv inside `comfy-managed/.venv`, so it stays isolated from the system Python and from the manual checkout below.
 
-## Project tooling with mise
-This repository still maintains its own Python virtual environment for custom scripts and experiments.
+### Download Wan2.2 Models
+Use `comfy model download` to fetch the required models. These commands assume you have set the default workspace as shown above.
 
 ```bash
-# install mise if you do not have it yet
-curl -sSL https://raw.githubusercontent.com/mise-app/mise/main/install.sh | sh
+# Diffusion Model (Wan2.2 5B FP16) -> models/diffusion_models
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_ti2v_5B_fp16.safetensors \
+  --relative-path models/diffusion_models
 
-# create or update the .venv defined in .mise.toml (Python 3.13.1)
-mise install
-source .venv/bin/activate
+# Text Encoder (UMT5 XXL FP8 Scaled) -> models/text_encoders
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors \
+  --relative-path models/text_encoders
 
-# install repo dependencies (torch, torchvision, huggingface tools)
-mise run install-dep
-```
-
-## Manual ComfyUI checkout (optional)
-If you need a separate copy for source-level tweaks, keep it in this repo so it does not interfere with the comfy-cli install location:
-
-```bash
-git clone https://github.com/Comfy-AI/ComfyUI.git
-cd ComfyUI
-pip install -r requirements.txt
-python main.py
+# VAE (Wan2.2) -> models/vae
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan2.2_vae.safetensors \
+  --relative-path models/vae
 ```
