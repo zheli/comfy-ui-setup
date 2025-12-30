@@ -52,6 +52,77 @@ comfy model download \
   --relative-path models/vae
 ```
 
+#### Use GGUF models for 5080
+```
+# GGUF (Wan2.2 5B FP16) -> models/unet
+comfy model download \
+  --url https://huggingface.co/QuantStack/Wan2.2-T2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-T2V-A14B-HighNoise-Q6_K.gguf\?download\=true \
+  --relative-path models/unet
+
+comfy model download \
+  --url https://huggingface.co/QuantStack/Wan2.2-T2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-T2V-A14B-LowNoise-Q6_K.gguf\?download\=true \
+  --relative-path models/unet
+
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors \
+  --relative-path models/loras
+
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_low_noise.safetensors \
+  --relative-path models/loras
+
+comfy model download \
+  --url https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/HighNoise/Wan2.2-I2V-A14B-HighNoise-Q6_K.gguf?download=true \
+  --relative-path models/unet
+
+
+
+comfy model download \
+  --url https://huggingface.co/QuantStack/Wan2.2-I2V-A14B-GGUF/resolve/main/LowNoise/Wan2.2-I2V-A14B-LowNoise-Q6_K.gguf\?download\=true \
+  --relative-path models/unet
+
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors \
+  --relative-path models/loras
+
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors \
+  --relative-path models/loras
+```
+
+#### Install Kijai ComfyUI-WanVideoWrapper
+```bash
+comfy node install https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+
+source .venv/bin/activate
+pip install -r comfy-managed/custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+```
+
+### Download Z-Image Turbo Models
+Use `comfy model download` to fetch the required models for Z-Image Turbo.
+
+```bash
+# Diffusion Model (Z-Image Turbo BF16) -> models/diffusion_models
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors \
+  --relative-path models/diffusion_models
+
+# Text Encoder (Qwen 3.4B) -> models/text_encoders
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors \
+  --relative-path models/text_encoders
+
+# VAE (Flux AE) -> models/vae
+comfy model download \
+  --url https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors \
+  --relative-path models/vae
+
+# LoRA (Pixel Art Style) -> models/loras
+comfy model download \
+  --url https://huggingface.co/tarn59/pixel_art_style_lora_z_image_turbo/resolve/main/pixel_art_style_z_image_turbo.safetensors \
+  --relative-path models/loras
+```
+
 ### Network Access (LAN / Tailscale)
 To access ComfyUI from other devices on your local network (e.g. `192.168.1.x`) or via VPNs like Tailscale (e.g. `100.x.y.z`), pass the `--listen` argument to the underlying ComfyUI process.
 
