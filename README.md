@@ -28,7 +28,7 @@ comfy set-default "$(pwd)/comfy-managed"
 comfy launch
 
 # update later when new versions drop
-comfy update
+comfy --workspace "$(pwd)/comfy-managed" update comfy
 ```
 `comfy-cli` creates and maintains a dedicated virtualenv inside `comfy-managed/.venv`, so it stays isolated from the system Python and from the manual checkout below.
 
@@ -96,6 +96,10 @@ comfy node install https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 
 source .venv/bin/activate
 pip install -r comfy-managed/custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+
+comfy model download \
+  --url https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/Wan22Animate/Wan2_2-Animate-14B_fp8_e4m3fn_scaled_KJ.safetensors \
+  --relative-path models/diffusion_models
 ```
 
 ### Download Z-Image Turbo Models
@@ -121,6 +125,21 @@ comfy model download \
 comfy model download \
   --url https://huggingface.co/tarn59/pixel_art_style_lora_z_image_turbo/resolve/main/pixel_art_style_z_image_turbo.safetensors \
   --relative-path models/loras
+```
+
+### Faceswap using insightface onnx
+```
+comfy model download \
+  --url https://huggingface.co/ezioruan/inswapper_128.onnx/resolve/main/inswapper_128.onnx \
+  --relative-path models/insightface
+
+comfy model download \
+  --url https://huggingface.co/gmk123/GFPGAN/resolve/main/GFPGANv1.4.pth \
+  --relative-path models/face_restoration
+
+comfy model download \
+  --url https://huggingface.co/HUGGHan/VAE/resolve/main/color101VAE_v1.pt \
+  --relative-path models/vae
 ```
 
 ### Network Access (LAN / Tailscale)
