@@ -28,6 +28,8 @@ comfy set-default "$(pwd)/comfy-managed"
 comfy launch
 
 # update later when new versions drop
+# install comfyui-manager>=4.1b1 first to ensure cm-cli is available
+pip install "comfyui-manager>=4.1b1"
 comfy --workspace "$(pwd)/comfy-managed" update comfy
 ```
 `comfy-cli` creates and maintains a dedicated virtualenv inside `comfy-managed/.venv`, so it stays isolated from the system Python and from the manual checkout below.
